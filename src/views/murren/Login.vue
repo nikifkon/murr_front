@@ -22,6 +22,7 @@
       <div class="mb">
         <label>
           <input
+              class="auth-input"
               type="text"
               v-model.trim="murren_username"
               placeholder="Имя в Мурренган"
@@ -46,6 +47,7 @@
       <div class="mb">
         <label>
           <input
+              class="auth-input"
               type="password"
               v-model.trim="murren_password"
               placeholder="Пароль"
@@ -96,77 +98,77 @@
 
 <script>
 
-    import {required, minLength} from 'vuelidate/lib/validators'
+  import {required, minLength} from 'vuelidate/lib/validators'
 
-    export default {
+  export default {
 
-        data: () => ({
+    data: () => ({
 
-            murren_username: '',
-            murren_password: '',
-            accountActivated: true
-        }),
+      murren_username: '',
+      murren_password: '',
+      accountActivated: true
+    }),
 
-        watch: {
+    watch: {
 
-            murren_username() {
-                this.accountActivated = true
-            }
-        },
+      murren_username() {
+        this.accountActivated = true
+      }
+    },
 
-        validations: {
+    validations: {
 
-            murren_username: {required},
-            murren_password: {required, minLength: minLength(6)}
-        },
+      murren_username: {required},
+      murren_password: {required, minLength: minLength(6)}
+    },
 
-        methods: {
+    methods: {
 
-            switchLoginForm() {
-                this.$store.dispatch('changeShowLoginForm_actions')
-            },
-            hideLoginAndShowResetPasswordForm() {
+      switchLoginForm() {
+        this.$store.dispatch('changeShowLoginForm_actions')
+      },
+      hideLoginAndShowResetPasswordForm() {
 
-                this.$store.dispatch('changeShowLoginForm_actions');
-                this.$store.dispatch('changeShowResetPasswordForm_actions');
-            },
-            hideLoginAndShowSignUpForm() {
+        this.$store.dispatch('changeShowLoginForm_actions');
+        this.$store.dispatch('changeShowResetPasswordForm_actions');
+      },
+      hideLoginAndShowSignUpForm() {
 
-                this.$store.dispatch('changeShowLoginForm_actions');
-                this.$store.dispatch('changeShownSignUpForm_actions');
-            },
+        this.$store.dispatch('changeShowLoginForm_actions');
+        this.$store.dispatch('changeShownSignUpForm_actions');
+      },
 
 
-            async login() {
+      async login() {
 
-                if (this.$v.$invalid) {
+        if (this.$v.$invalid) {
 
-                    this.$v.$touch();
-                    return
-                }
-
-                const formData = {
-
-                    username: this.murren_username,
-                    password: this.murren_password,
-                };
-
-                try {
-
-                    await this.$store.dispatch('login', formData);
-                    await this.$store.dispatch('changeShowLoginForm_actions');
-                    await this.$router.push('/murren');
-
-                } catch (e) {
-
-                    if (e.response.data.detail === 'No active account found with the given credentials') {
-
-                        this.accountActivated = false
-                    }
-                }
-            }
+          this.$v.$touch();
+          return
         }
+
+        const formData = {
+
+          username: this.murren_username,
+          password: this.murren_password,
+        };
+
+        try {
+
+          await this.$store.dispatch('login', formData);
+          await this.$store.dispatch('changeShowLoginForm_actions');
+          // await this.$router.push('/murren');
+
+        } catch (e) {
+
+          if (e.response.data.detail === 'No active account found with the given credentials') {
+
+            this.accountActivated = false
+          }
+        }
+      }
     }
+  }
 </script>
 
 <style scoped>

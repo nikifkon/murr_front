@@ -12,14 +12,28 @@
     <router-link
         active-class="bottom_icon-active"
         class="bottom_icon"
-        to="/murren">
-      <i class="el-icon-edit-outline"></i>
+        to="/watch_on_murr/?murr_id=2">
+      <i class="el-icon-view"></i>
     </router-link>
+
+    <span
+
+        class="bottom_icon"
+        @click="openCreateMurr">
+      <i class="el-icon-edit-outline"></i>
+    </span>
 
   </div>
 </template>
 
 <script>
+  export default {
+    methods: {
+      openCreateMurr() {
+        this.$store.dispatch('changeShowCreateMurr_actions')
+      }
+    }
+  }
 
 </script>
 

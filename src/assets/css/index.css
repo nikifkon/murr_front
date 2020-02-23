@@ -7,7 +7,19 @@
     outline: none;
 }
 
-input {
+/*input {*/
+/*    min-width: 300px;*/
+/*    background-color: transparent;*/
+/*    border: solid 3px #AD00FF;*/
+/*    border-radius: 5px;*/
+
+/*    font-size: 1rem;*/
+/*    text-align: center;*/
+/*    padding: 0.8rem 0;*/
+/*    transition: ease-in-out 0.5s;*/
+/*}*/
+
+.auth-input {
     min-width: 300px;
     background-color: transparent;
     border: solid 3px #AD00FF;
@@ -52,6 +64,16 @@ a {
 .invalid_field {
     border: orangered 3px solid;
     background-color: #680013;
+}
+
+.main-layout-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 15px 5px;
+    background-color: #1a2931;
 }
 
 
@@ -139,4 +161,20 @@ a {
 .element-ui-message__success {
     background-color: #1a2931;
     color: orangered;
+}
+
+/* ScrollBar */
+
+::-webkit-scrollbar-track {
+    opacity: 1;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    background-color: #AD00FF;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
 }

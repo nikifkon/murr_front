@@ -21,6 +21,7 @@
       <div class="mb">
         <label>
           <input
+              class="auth-input"
               type="password"
               v-model.trim="murren_password_1"
               placeholder="Новый пароль"
@@ -53,6 +54,7 @@
       <div class="mb">
         <label>
           <input
+              class="auth-input"
               type="password"
               v-model.trim="murren_password_2"
               placeholder="Повторить новый пароль"

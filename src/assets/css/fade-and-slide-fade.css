@@ -59,6 +59,7 @@
     border: #AD00FF 1px solid;
     border-radius: 5px;
     z-index: 1;
+    padding: 0 10px;
 }
 
 .hide__main-slide-fade-container {

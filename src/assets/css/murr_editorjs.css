@@ -1,0 +1,47 @@
+.image-tool--withBackground .image-tool__image {
+    background-color: transparent !important;
+    padding: 5px !important;
+}
+
+.cdx-input {
+    border: transparent !important;
+}
+
+.cdx-input {
+    padding: 0 !important;
+    font-size: 0.8rem;
+    opacity: 0.9;
+    font-family: "JetBrainsMono-Italic", serif;
+}
+
+.ce-toolbox.ce-toolbox--opened {
+    background-color: #A36FFF;
+    border-radius: 5px;
+}
+
+.ce-settings__default-zone {
+    display: flex;
+    background-color: #A36FFF;
+}
+
+.ce-toolbar.ce-toolbar--opened {
+    background-color: #A36FFF;
+}
+
+.cdx-button {
+    background-color: #A36FFF;
+    color: #B0BEC5;
+}
+
+.cdx-button:hover {
+    background-color: #9c64ff;
+    color: #B0BEC5;
+}
+
+.ce-settings__plugin-zone {
+    background-color: #A36FFF;
+}
+
+.codex-editor__redactor {
+    padding-bottom: 150px !important;
+}

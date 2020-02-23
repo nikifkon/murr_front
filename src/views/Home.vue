@@ -1,5 +1,5 @@
 <template>
-  <div class="home-main-container">
+  <div class="main-layout-container">
 
     <h2 class="mb">Мурренган — это группа людей,<br> объединенная для достижения цели.</h2>
 
@@ -29,19 +29,19 @@
 
 <script>
 
-    import axios from "axios";
+  import axios from "axios";
 
-    export default {
-        async beforeCreate() {
+  export default {
+    async beforeCreate() {
 
-            const r = await axios.get('/murren/all/');
-            this.signUpMurrens = r.data.reverse();
-        },
+      const r = await axios.get('/murren/all/');
+      this.signUpMurrens = r.data.reverse();
+    },
 
-        data: () => ({
-            signUpMurrens: ''
-        }),
-    }
+    data: () => ({
+      signUpMurrens: ''
+    }),
+  }
 
 </script>
 
@@ -54,17 +54,6 @@
     border: #AD00FF 1px solid;
     border-radius: 5px;
     padding-top: 1rem;
-  }
-
-
-  .home-main-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 0 15px 5px;
-    background-color: #1a2931;
   }
 
 </style>

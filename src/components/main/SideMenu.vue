@@ -22,6 +22,7 @@
         <p class="mb">Это меню для авторизованного Муррена.</p>
         <h2 class="mb">{{ this.$store.getters.murrenName_getters }}</h2>
         <small>Как оно должно выглядеть?</small>
+
       </div>
 
       <div class="bottom-info">
@@ -29,11 +30,17 @@
         <a class="link mb" href="https://tlgg.ru/MurrenganChat">Телеграм</a>
         <a class="link mb" href="https://www.youtube.com/murrengan">Ютюб</a>
         <a class="link mb" href="https://vk.com/murrengan">Контач</a>
-
         <small>0.0.12v</small>
 
-      </div>
+        <el-button
+            v-if="this.$store.getters.accessToken_getters"
+            class="murr-button__danger"
+            @click="logout"
+        >
+          Выйти
+        </el-button>
 
+      </div>
 
     </div>
 
@@ -54,16 +61,31 @@
             switchRightSideMenu() {
                 this.$store.dispatch('changeShowRightSideMenu_actions')
             },
+
             openSignUpFromSideMenu() {
 
                 this.$store.dispatch('changeShowRightSideMenu_actions');
                 this.$store.dispatch('changeShownSignUpForm_actions')
             },
+
             openLoginFormFromSideMenu() {
 
                 this.$store.dispatch('changeShowRightSideMenu_actions');
                 this.$store.dispatch('changeShowLoginForm_actions');
+            },
 
+            async logout() {
+
+                const dataForPopUpMessage = {
+                    message: 'Ты разлогинился 😱',
+                    customClass: 'element-ui-message__success',
+                    type: 'success'
+                };
+
+                await this.$store.dispatch('changeShowRightSideMenu_actions');
+                await this.$router.push('/');
+                await this.$store.dispatch('popUpMessage', dataForPopUpMessage);
+                await this.$store.dispatch('logout');
             }
         }
     }
@@ -78,7 +100,6 @@
     display: flex;
     flex-direction: column;
   }
-
 
   .side-menu-for-logged-in-murren {
     max-width: 300px;

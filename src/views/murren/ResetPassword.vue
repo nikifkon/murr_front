@@ -23,6 +23,7 @@
 
         <label>
           <input
+              class="auth-input"
               type="text"
               v-model.trim="murren_email"
               placeholder="Почта"

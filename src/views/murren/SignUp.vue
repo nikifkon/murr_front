@@ -23,6 +23,7 @@
       <div class="mb">
         <label>
           <input
+              class="auth-input"
               type="text"
               v-model.trim="murren_email"
               placeholder="Почта"
@@ -55,10 +56,12 @@
       <div class="mb">
         <label>
           <input
+              class="auth-input"
               type="text"
               v-model.trim="murren_username"
               placeholder="Имя в Мурренган"
               :class="{invalid_field: ($v.murren_username.$dirty && !$v.murren_username.required)
+              || ($v.murren_username.$dirty && !$v.murren_username.murr_alpha_validator)
               || (this.uniqueMurrenName === false)}"
           >
         </label>
@@ -74,11 +77,18 @@
             v-else-if="this.uniqueMurrenName === false">
           Это имя уже используется
         </div>
+
+        <div
+            class="error-text"
+            v-else-if="$v.murren_username.$dirty && !$v.murren_username.murr_alpha_validator">
+          Имя на латинице и вместо пробелов _
+        </div>
       </div>
 
       <div class="mb">
         <label>
           <input
+              class="auth-input"
               type="password"
               v-model.trim="murren_password"
               placeholder="Пароль"
@@ -135,8 +145,9 @@
 
     import VueRecaptcha from 'vue-recaptcha';
     import axios from 'axios'
-    import {email, required, minLength} from 'vuelidate/lib/validators'
+    import {email, required, minLength, helpers} from 'vuelidate/lib/validators'
     import {siteKey} from "@/devAndProdVariables";
+    const murr_alpha_validator = helpers.regex('murr_alpha_validator', /^[\d\w]*$/);
 
     export default {
         data: () => ({
@@ -241,7 +252,7 @@
         validations: {
 
             murren_email: {email, required},
-            murren_username: {required},
+            murren_username: {required, murr_alpha_validator},
             murren_password: {required, minLength: minLength(6)}
         },
 

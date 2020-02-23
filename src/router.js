@@ -1,10 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
 import store from '@/store/index';
-
-
-Vue.use(Router);
+import {Message} from 'element-ui';
 
 const router = new Router({
     mode: 'history',
@@ -15,6 +12,8 @@ const router = new Router({
             meta: {layout: 'main-layout', murr_some_data: '42'},
             component: () => import('./views/Home.vue')
         },
+
+        // murren
         {
             path: '/login',
             name: 'login',
@@ -26,12 +25,6 @@ const router = new Router({
             name: 'signup',
             meta: {layout: 'empty-layout'},
             component: () => import('./views/murren/SignUp.vue')
-        },
-        {
-            path: '/murren',
-            name: 'murren',
-            meta: {layout: 'main-layout', accessTokenExpected: true},
-            component: () => import('./views/murren/Murren.vue')
         },
         {
             path: '/check_email',
@@ -51,10 +44,24 @@ const router = new Router({
             meta: {layout: 'main-layout'},
             component: () => import('./views/murren/SetNewPassword.vue')
         },
+
+        // murr
+        {
+            path: '/create_murr',
+            name: 'create_murr',
+            meta: {layout: 'main-layout', accessTokenExpected: true},
+            component: () => import('./views/murr/CreateMurr.vue')
+        },
+        {
+            path: '/watch_on_murr',
+            name: 'watch_on_murr',
+            meta: {layout: 'main-layout',
+                // accessTokenExpected: true
+            },
+            component: () => import('./views/murr/WatchOnMurr.vue')
+        },
     ]
 });
-
-import {Message} from 'element-ui';
 
 router.beforeEach((to, from, next) => {
 
@@ -83,3 +90,14 @@ router.beforeEach((to, from, next) => {
 });
 
 export default router
+
+
+// workaround for push to "/some_url" when client on "/some_url"
+const originalPush = Router.prototype.push;
+
+Router.prototype.push = function push(location) {
+    return originalPush.call(this, location).catch(err => err)
+};
+//
+
+Vue.use(Router);

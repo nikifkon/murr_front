@@ -3,7 +3,7 @@
 
     <TopNavbar/>
 
-    <div class="nav-container">
+    <div class="view-container">
 
       <transition
           name="fade"
@@ -43,30 +43,40 @@
           v-if="this.$store.getters.showResetPasswordForm_getters"/>
     </transition>
 
+    <transition
+        name="slide-fade-y"
+        mode="out-in">
+      <CreateMurr
+          v-if="this.$store.getters.showCreateMurr_getters"/>
+    </transition>
+
   </div>
 </template>
 
 <script>
 
-    import BottomNavbar from '@/components/main/BottomNavbar'
-    import TopNavbar from '@/components/main/TopNavbar'
-    import SignUp from "@/views/murren/SignUp";
-    import Login from "@/views/murren/Login";
-    import CheckEmail from "@/views/murren/CheckEmail";
-    import ResetPassword from "@/views/murren/ResetPassword";
+  import BottomNavbar from '@/components/main/BottomNavbar'
+  import TopNavbar from '@/components/main/TopNavbar'
+  import SignUp from "@/views/murren/SignUp";
+  import Login from "@/views/murren/Login";
+  import CheckEmail from "@/views/murren/CheckEmail";
+  import ResetPassword from "@/views/murren/ResetPassword";
+  import CreateMurr from "../views/murr/CreateMurr";
 
-    export default {
-        name: 'main-layout',
-        data: () => ({}),
-        components: {
-            BottomNavbar,
-            TopNavbar,
-            SignUp,
-            Login,
-            CheckEmail,
-            ResetPassword
-        }
+  export default {
+    name: 'main-layout',
+    data: () => ({}),
+    components: {
+      BottomNavbar,
+      TopNavbar,
+      SignUp,
+      Login,
+      CheckEmail,
+      ResetPassword,
+      CreateMurr,
+
     }
+  }
 </script>
 
 <style scoped>
@@ -76,8 +86,9 @@
     background-color: #1a2931;
   }
 
-  .nav-container {
+  .view-container {
     width: 100%;
+    height: 100%;
     padding-bottom: 50px;
     padding-top: 60px;
     text-align: center;
